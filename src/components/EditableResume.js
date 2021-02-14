@@ -6,7 +6,6 @@ const ResumeWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   width: 100%;
 `;
 
@@ -20,17 +19,30 @@ const ResumeForm = styled.form`
   box-shadow: 10px 10px;
 `;
 
+const ResumeBody = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
+const WorkExperiences = styled.div`
+  background-color: blue;
+`;
+const Education = styled.div`
+  background-color: yellow;
+`;
+const Skills = styled.div`
+  background-color: green;
+`;
 class EditableResume extends Component {
   render() {
     return (
       <ResumeWrapper>
         <ResumeForm>
           <ResumeHeader />
-          {/* <ResumeBody>
-            <WorkExperiences></WorkExperiences>
-            <Education></Education>
-            <Skills></Skills>
-          </ResumeBody> */}
+          <ResumeBody>
+            <WorkExperiences>Work Experiences</WorkExperiences>
+            <Education>Education</Education>
+            <Skills>Skills</Skills>
+          </ResumeBody>
         </ResumeForm>
       </ResumeWrapper>
     );
