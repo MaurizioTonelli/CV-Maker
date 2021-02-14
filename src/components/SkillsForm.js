@@ -24,16 +24,38 @@ const Input = styled.input`
   padding: 3px;
 `;
 
-export default class WorkExperienceForm extends Component {
+export default class SkillsForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: "" };
+    this.submitSkill = this.submitSkill.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+  submitSkill(event) {
+    event.preventDefault();
+    this.props.addSkill(this.state.value);
+    this.props.toggleForm(event);
+  }
+  handleInputChange(event) {
+    this.setState({ value: event.target.value });
+  }
   render() {
     return (
       <FormWrapper autoComplete="off">
         <Skill>
           <Label htmlFor="skill">Skill</Label>
-          <Input name="skill" type="text" placeholder="Write a skill" />
+          <Input
+            value={this.state.value}
+            onChange={this.handleInputChange}
+            name="skill"
+            type="text"
+            placeholder="Write a skill"
+          />
         </Skill>
         <ButtonsWrapper>
-          <Button title="Add">Add</Button>
+          <Button title="Add" onClick={this.submitSkill}>
+            Add
+          </Button>
           <Button title="Cancel" onClick={this.props.toggleForm}>
             Cancel
           </Button>

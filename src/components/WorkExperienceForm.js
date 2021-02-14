@@ -54,50 +54,117 @@ const LongInput = styled.textarea`
   height: 100px;
   padding: 5px;
 `;
-const FromField = styled.div`
-  display: flex;
-`;
 
 export default class WorkExperienceForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      company: "",
+      city: "",
+      from: "",
+      to: "",
+      role: "",
+      description: "",
+    };
+    this.submitWorkExperience = this.submitWorkExperience.bind(this);
+    this.handleCompanyChange = this.handleCompanyChange.bind(this);
+    this.handleCityChange = this.handleCityChange.bind(this);
+    this.handleFromChange = this.handleFromChange.bind(this);
+    this.handleToChange = this.handleToChange.bind(this);
+    this.handleRoleChange = this.handleRoleChange.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+  }
+  submitWorkExperience(event) {
+    event.preventDefault();
+    this.props.addWorkExperience(this.state);
+    this.props.toggleForm(event);
+  }
+  handleCompanyChange(event) {
+    this.setState({ company: event.target.value });
+  }
+  handleCityChange(event) {
+    this.setState({ city: event.target.value });
+  }
+  handleFromChange(event) {
+    this.setState({ from: event.target.value });
+  }
+  handleToChange(event) {
+    this.setState({ to: event.target.value });
+  }
+  handleRoleChange(event) {
+    this.setState({ role: event.target.value });
+  }
+  handleDescriptionChange(event) {
+    this.setState({ description: event.target.value });
+  }
+
   render() {
     return (
       <FormWrapper autoComplete="off">
         <Company>
           <Label htmlFor="company">Company</Label>
-          <Input name="company" type="text" placeholder="Company Name" />
+          <Input
+            onChange={this.handleCompanyChange}
+            name="company"
+            type="text"
+            placeholder="Company Name"
+          />
         </Company>
         <City>
           <Label htmlFor="city">City</Label>
-          <Input name="city" type="text" placeholder="City" />
+          <Input
+            onChange={this.handleCityChange}
+            name="city"
+            type="text"
+            placeholder="City"
+          />
         </City>
         <FromToField>
           <From>
             <Label htmlFor="from" placeholder="YYYY">
               From
             </Label>
-            <Input name="from" type="number" placeholder="YYYY" />
+            <Input
+              onChange={this.handleFromChange}
+              name="from"
+              type="number"
+              placeholder="YYYY"
+            />
           </From>
           <To>
             <Label htmlFor="to" placeholder="YYYY">
               To
             </Label>
-            <Input name="to" type="number" placeholder="YYYY" />
+            <Input
+              onChange={this.handleToChange}
+              name="to"
+              type="number"
+              placeholder="YYYY"
+            />
           </To>
         </FromToField>
         <Role>
           <Label htmlFor="role">Role</Label>
-          <Input name="role" type="text" placeholder="Role" />
+          <Input
+            onChange={this.handleRoleChange}
+            name="role"
+            type="text"
+            placeholder="Role"
+          />
         </Role>
         <Description>
           <Label htmlFor="description">Description and achievements</Label>
           <LongInput
+            onChange={this.handleDescriptionChange}
             name="description"
             type="text"
             placeholder="Write here..."
           />
         </Description>
         <ButtonsWrapper>
-          <Button title="Add">Add</Button>
+          <Button title="Add" onClick={this.submitWorkExperience}>
+            Add
+          </Button>
           <Button title="Cancel" onClick={this.props.toggleForm}>
             Cancel
           </Button>

@@ -2,20 +2,33 @@ import React, { Component } from "react";
 import "../assets/fonts.css";
 import FormButton from "./FormButton";
 import EducationForm from "./EducationForm";
+import EducationItem from "./EducationItem";
 import {
   CVSectionWrapper,
   CVSectionItems,
   CVSectionTitle,
 } from "../assets/globalStyles";
 
-export default class WorkExperiences extends Component {
+export default class Education extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { educationArr: [] };
+    this.addEducation = this.addEducation.bind(this);
+  }
+  addEducation(education) {
+    this.setState({ educationArr: this.state.educationArr.concat(education) });
+  }
   render() {
     return (
       <CVSectionWrapper>
         <CVSectionTitle>Education</CVSectionTitle>
-        <CVSectionItems></CVSectionItems>
+        <CVSectionItems>
+          {this.state.educationArr.map((item, i) => (
+            <EducationItem key={i} data={item} />
+          ))}
+        </CVSectionItems>
         <FormButton title="Education">
-          <EducationForm />
+          <EducationForm addEducation={this.addEducation} />
         </FormButton>
       </CVSectionWrapper>
     );

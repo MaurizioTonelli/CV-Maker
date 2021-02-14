@@ -17,6 +17,17 @@ const Button = styled.button`
   }
 `;
 
+const DeleteButton = styled(Button)`
+  background-color: #a50000;
+  font-size: 2em;
+  color: white;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const CVSectionWrapper = styled.div`
   padding: 15px;
   margin: 5px;
@@ -28,7 +39,13 @@ const CVSectionTitle = styled.div`
   font-family: "Roboto Mono", monospace;
   font-weight: bolder;
   padding: 5px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #ccc;
 `;
 
-export { Button, CVSectionWrapper, CVSectionItems, CVSectionTitle };
+export {
+  DeleteButton,
+  Button,
+  CVSectionWrapper,
+  CVSectionItems,
+  CVSectionTitle,
+};

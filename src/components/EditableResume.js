@@ -12,7 +12,7 @@ const ResumeWrapper = styled.div`
   width: 100%;
 `;
 
-const ResumeForm = styled.form`
+const ResumeForm = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@ const ResumeForm = styled.form`
   box-shadow: 10px 10px #888;
 `;
 
-const ResumeBody = styled.form`
+const ResumeBody = styled.div`
   display: flex;
   flex-direction: column;
 `;

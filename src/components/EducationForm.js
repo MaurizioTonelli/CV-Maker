@@ -8,11 +8,7 @@ const FormWrapper = styled.form`
   flex-direction: column;
   font-family: "Roboto Mono", monospace;
 `;
-const Company = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const City = styled.div`
+const Field = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -31,14 +27,6 @@ const To = styled.div`
   flex-direction: column;
   width: 48%;
 `;
-const Role = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const Description = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 const ButtonsWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -54,50 +42,117 @@ const LongInput = styled.textarea`
   height: 100px;
   padding: 5px;
 `;
-const FromField = styled.div`
-  display: flex;
-`;
 
-export default class WorkExperienceForm extends Component {
+export default class EducationForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      university: "",
+      city: "",
+      from: "",
+      to: "",
+      degree: "",
+      description: "",
+    };
+    this.submitEducation = this.submitEducation.bind(this);
+    this.handleUniversityChange = this.handleUniversityChange.bind(this);
+    this.handleCityChange = this.handleCityChange.bind(this);
+    this.handleFromChange = this.handleFromChange.bind(this);
+    this.handleToChange = this.handleToChange.bind(this);
+    this.handleDegreeChange = this.handleDegreeChange.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+  }
+  submitEducation(event) {
+    event.preventDefault();
+    this.props.addEducation(this.state);
+    this.props.toggleForm(event);
+  }
+  handleUniversityChange(event) {
+    this.setState({ university: event.target.value });
+  }
+  handleCityChange(event) {
+    this.setState({ city: event.target.value });
+  }
+  handleFromChange(event) {
+    this.setState({ from: event.target.value });
+  }
+  handleToChange(event) {
+    this.setState({ to: event.target.value });
+  }
+  handleDegreeChange(event) {
+    this.setState({ degree: event.target.value });
+  }
+  handleDescriptionChange(event) {
+    this.setState({ description: event.target.value });
+  }
+
   render() {
     return (
       <FormWrapper autoComplete="off">
-        <Company>
+        <Field>
           <Label htmlFor="university">University</Label>
-          <Input name="university" type="text" placeholder="University Name" />
-        </Company>
-        <City>
+          <Input
+            onChange={this.handleUniversityChange}
+            name="university"
+            type="text"
+            placeholder="University Name"
+          />
+        </Field>
+        <Field>
           <Label htmlFor="city">City</Label>
-          <Input name="city" type="text" placeholder="City" />
-        </City>
+          <Input
+            onChange={this.handleCityChange}
+            name="city"
+            type="text"
+            placeholder="City"
+          />
+        </Field>
         <FromToField>
           <From>
             <Label htmlFor="from" placeholder="YYYY">
               From
             </Label>
-            <Input name="from" type="number" placeholder="YYYY" />
+            <Input
+              onChange={this.handleFromChange}
+              name="from"
+              type="number"
+              placeholder="YYYY"
+            />
           </From>
           <To>
             <Label htmlFor="to" placeholder="YYYY">
               To
             </Label>
-            <Input name="to" type="number" placeholder="YYYY" />
+            <Input
+              onChange={this.handleToChange}
+              name="to"
+              type="number"
+              placeholder="YYYY"
+            />
           </To>
         </FromToField>
-        <Role>
+        <Field>
           <Label htmlFor="degree">Degree</Label>
-          <Input name="degree" type="text" placeholder="Degree" />
-        </Role>
-        <Description>
+          <Input
+            onChange={this.handleDegreeChange}
+            name="degree"
+            type="text"
+            placeholder="Degree"
+          />
+        </Field>
+        <Field>
           <Label htmlFor="description">Description and achievements</Label>
           <LongInput
+            onChange={this.handleDescriptionChange}
             name="description"
             type="text"
             placeholder="Write here..."
           />
-        </Description>
+        </Field>
         <ButtonsWrapper>
-          <Button title="Add">Add</Button>
+          <Button title="Add" onClick={this.submitEducation}>
+            Add
+          </Button>
           <Button title="Cancel" onClick={this.props.toggleForm}>
             Cancel
           </Button>
