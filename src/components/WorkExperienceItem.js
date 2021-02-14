@@ -70,7 +70,7 @@ const WorkExperienceItem = (props) => {
         <Description>{props.data.description}</Description>
       </ItemWrapper>
       <ButtonWrapper>
-        <DeleteButton>
+        <DeleteButton onClick={() => props.removeWorkExperience(props.key)}>
           <BsFillTrashFill />
         </DeleteButton>
       </ButtonWrapper>

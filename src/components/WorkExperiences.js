@@ -15,6 +15,7 @@ export default class WorkExperiences extends Component {
     super(props);
     this.state = { workExperienceArr: [] };
     this.addWorkExperience = this.addWorkExperience.bind(this);
+    this.removeWorkExperience = this.removeWorkExperience.bind(this);
   }
 
   addWorkExperience(experience) {
@@ -22,13 +23,22 @@ export default class WorkExperiences extends Component {
       workExperienceArr: this.state.workExperienceArr.concat(experience),
     });
   }
+  removeWorkExperience(index) {
+    let newArr = this.state.workExperienceArr;
+    newArr.splice(index, 1);
+    this.setState({ workExperienceArr: newArr });
+  }
   render() {
     return (
       <CVSectionWrapper>
         <CVSectionTitle>Work Experience</CVSectionTitle>
         <CVSectionItems>
           {this.state.workExperienceArr.map((item, i) => (
-            <WorkExperienceItem key={i} data={item} />
+            <WorkExperienceItem
+              key={i}
+              data={item}
+              removeWorkExperience={this.removeWorkExperience}
+            />
           ))}
         </CVSectionItems>
         <FormButton title="Work Experience">

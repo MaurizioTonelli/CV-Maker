@@ -69,7 +69,7 @@ const EducationItem = (props) => {
         <Description>{props.data.description}</Description>
       </ItemWrapper>
       <ButtonWrapper>
-        <DeleteButton>
+        <DeleteButton onClick={() => props.removeEducation(props.key)}>
           <BsFillTrashFill />
         </DeleteButton>
       </ButtonWrapper>

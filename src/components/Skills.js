@@ -39,10 +39,18 @@ export default class Skills extends Component {
     super(props);
     this.state = { skills: [] };
     this.addSkill = this.addSkill.bind(this);
+    this.removeSkill = this.removeSkill.bind(this);
   }
   addSkill(skill) {
     this.setState({
       skills: this.state.skills.concat(skill),
+    });
+  }
+  removeSkill(index) {
+    let newArr = this.state.skills;
+    newArr.splice(index, 1);
+    this.setState({
+      skills: newArr,
     });
   }
   render() {
@@ -53,7 +61,11 @@ export default class Skills extends Component {
           {this.state.skills.map((item, i) => (
             <SkillWrapper key={i}>
               <Skill>{item}</Skill>
-              <SmallDeletebutton>
+              <SmallDeletebutton
+                onClick={() => {
+                  this.removeSkill(i);
+                }}
+              >
                 <BsFillTrashFill />
               </SmallDeletebutton>
             </SkillWrapper>

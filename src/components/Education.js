@@ -14,9 +14,15 @@ export default class Education extends Component {
     super(props);
     this.state = { educationArr: [] };
     this.addEducation = this.addEducation.bind(this);
+    this.removeEducation = this.removeEducation.bind(this);
   }
   addEducation(education) {
     this.setState({ educationArr: this.state.educationArr.concat(education) });
+  }
+  removeEducation(index) {
+    let newArr = this.state.educationArr;
+    newArr.splice(index, 1);
+    this.setState({ educationArr: newArr });
   }
   render() {
     return (
@@ -24,7 +30,11 @@ export default class Education extends Component {
         <CVSectionTitle>Education</CVSectionTitle>
         <CVSectionItems>
           {this.state.educationArr.map((item, i) => (
-            <EducationItem key={i} data={item} />
+            <EducationItem
+              key={i}
+              data={item}
+              removeEducation={this.removeEducation}
+            />
           ))}
         </CVSectionItems>
         <FormButton title="Education">
