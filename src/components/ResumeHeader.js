@@ -21,7 +21,7 @@ const ResumeHeaderWrapper = styled.div`
 const BasicInfo = styled.div`
   display: flex;
   flex-direction: column;
-  font-size: 2em;
+  font-size: 2.5vw;
 `;
 
 const Name = styled.div`

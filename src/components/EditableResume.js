@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import ResumeHeader from "./ResumeHeader";
+import WorkExperiences from "./WorkExperiences";
+import Education from "./Education";
+import Skills from "./Skills";
 
 const ResumeWrapper = styled.div`
   display: flex;
@@ -16,22 +19,14 @@ const ResumeForm = styled.form`
   width: 80%;
   height: 90%;
   border: 1px solid #aaa;
-  box-shadow: 10px 10px;
+  box-shadow: 10px 10px #888;
 `;
 
 const ResumeBody = styled.form`
   display: flex;
   flex-direction: column;
 `;
-const WorkExperiences = styled.div`
-  background-color: blue;
-`;
-const Education = styled.div`
-  background-color: yellow;
-`;
-const Skills = styled.div`
-  background-color: green;
-`;
+
 class EditableResume extends Component {
   render() {
     return (
@@ -39,9 +34,9 @@ class EditableResume extends Component {
         <ResumeForm>
           <ResumeHeader />
           <ResumeBody>
-            <WorkExperiences>Work Experiences</WorkExperiences>
-            <Education>Education</Education>
-            <Skills>Skills</Skills>
+            <WorkExperiences />
+            <Education />
+            <Skills />
           </ResumeBody>
         </ResumeForm>
       </ResumeWrapper>
