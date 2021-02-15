@@ -1,8 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 import { FiPaperclip } from "react-icons/fi";
 import { Button } from "../assets/globalStyles";
 import "../assets/fonts.css";
+import ModeContext from "../assets/context";
 
 const NavWrapper = styled.div`
   display: flex;
@@ -30,18 +31,36 @@ const CVButtonWrapper = styled.div`
   align-items: center;
 `;
 
-const NavBar = (props) => {
-  return (
-    <NavWrapper>
-      <CVLogo>
-        <FiPaperclip /> CVMaker
-      </CVLogo>
-      <CVButtonWrapper>
-        <Button>Edit Mode</Button>
-        <Button>Preview Mode</Button>
-      </CVButtonWrapper>
-    </NavWrapper>
-  );
-};
+class NavBar extends Component {
+  static contextType = ModeContext;
+  render() {
+    const EButton = styled(Button)`
+      background-color: ${() =>
+        this.context === "edit" ? "#a50000" : "white"};
+      color: ${() => (this.context === "edit" ? "white" : "black")};
+    `;
+    const PButton = styled(Button)`
+      background-color: ${() =>
+        this.context === "edit" ? "white" : "#a50000"};
+      color: ${() => (this.context === "edit" ? "black" : "white")};
+    `;
+    console.log(this.context);
+    return (
+      <NavWrapper>
+        <CVLogo>
+          <FiPaperclip /> CVMaker
+        </CVLogo>
+        <CVButtonWrapper>
+          <EButton onClick={(e) => this.props.setMode("edit")}>
+            Edit Mode
+          </EButton>
+          <PButton onClick={(e) => this.props.setMode("preview")}>
+            Preview Mode
+          </PButton>
+        </CVButtonWrapper>
+      </NavWrapper>
+    );
+  }
+}
 
 export default NavBar;

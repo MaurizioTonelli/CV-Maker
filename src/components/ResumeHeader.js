@@ -5,7 +5,6 @@ import { AiTwotonePhone } from "react-icons/ai";
 import { MdEmail } from "react-icons/md";
 import { IoLogoLinkedin } from "react-icons/io";
 import EditableField from "./EditableField";
-
 const ResumeHeaderWrapper = styled.div`
   width: 100%;
   height: 20%;

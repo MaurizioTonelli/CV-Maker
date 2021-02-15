@@ -13,6 +13,7 @@ const ResumeWrapper = styled.div`
 `;
 
 const ResumeForm = styled.div`
+  margin-top: 20px;
   background-color: white;
   display: flex;
   flex-direction: column;

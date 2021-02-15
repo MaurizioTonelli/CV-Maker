@@ -1,7 +1,9 @@
+import React, { Component } from "react";
 import NavBar from "./components/NavBar";
 import "./assets/reset.css";
 import styled from "styled-components";
 import EditableResume from "./components/EditableResume";
+import ModeContext from "./assets/context";
 
 const Line = styled.div`
   height: 1px;
@@ -16,14 +18,26 @@ const AppWrapper = styled.div`
   width: 100%;
 `;
 
-function App() {
-  return (
-    <AppWrapper>
-      <NavBar />
-      <Line />
-      <EditableResume />
-    </AppWrapper>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = { mode: "edit" };
+    this.setMode = this.setMode.bind(this);
+  }
+  setMode(m) {
+    this.setState({ mode: m });
+  }
+  render() {
+    return (
+      <ModeContext.Provider value={this.state.mode}>
+        <AppWrapper>
+          <NavBar setMode={this.setMode} />
+          <Line />
+          <EditableResume />
+        </AppWrapper>
+      </ModeContext.Provider>
+    );
+  }
 }
 
 export default App;

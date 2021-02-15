@@ -1,8 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 import "../assets/fonts.css";
 import { Button } from "../assets/globalStyles";
 import { BsFillTrashFill } from "react-icons/bs";
+import ModeContext from "../assets/context";
 
 const Wrapper = styled.div`
   display: flex;
@@ -54,27 +55,38 @@ const DeleteButton = styled(Button)`
   align-items: center;
   justify-content: center;
 `;
-const EducationItem = (props) => {
-  return (
-    <Wrapper>
-      <ItemWrapper>
-        <Title>
-          <University>{props.data.university}</University> |
-          <City> {props.data.city}</City>
-        </Title>
-        <Date>
-          {props.data.from} - {props.data.to}
-        </Date>
-        <Degree>{props.data.degree}</Degree>
-        <Description>{props.data.description}</Description>
-      </ItemWrapper>
-      <ButtonWrapper>
-        <DeleteButton onClick={() => props.removeEducation(props.key)}>
-          <BsFillTrashFill />
-        </DeleteButton>
-      </ButtonWrapper>
-    </Wrapper>
-  );
-};
+class EducationItem extends Component {
+  static contextType = ModeContext;
+  render() {
+    let buttons =
+      this.context === "edit" ? (
+        <ButtonWrapper>
+          <DeleteButton
+            onClick={() => this.props.removeEducation(this.props.key)}
+          >
+            <BsFillTrashFill />
+          </DeleteButton>
+        </ButtonWrapper>
+      ) : (
+        <div></div>
+      );
+    return (
+      <Wrapper>
+        <ItemWrapper>
+          <Title>
+            <University>{this.props.data.university}</University> |
+            <City> {this.props.data.city}</City>
+          </Title>
+          <Date>
+            {this.props.data.from} - {this.props.data.to}
+          </Date>
+          <Degree>{this.props.data.degree}</Degree>
+          <Description>{this.props.data.description}</Description>
+        </ItemWrapper>
+        {buttons}
+      </Wrapper>
+    );
+  }
+}
 
 export default EducationItem;

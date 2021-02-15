@@ -10,6 +10,7 @@ import {
 } from "../assets/globalStyles";
 import styled from "styled-components";
 import { BsFillTrashFill } from "react-icons/bs";
+import ModeContext from "../assets/context";
 
 const Skill = styled.li`
   padding: 0px 5px;
@@ -53,6 +54,7 @@ export default class Skills extends Component {
       skills: newArr,
     });
   }
+  static contextType = ModeContext;
   render() {
     return (
       <CVSectionWrapper>
@@ -61,13 +63,15 @@ export default class Skills extends Component {
           {this.state.skills.map((item, i) => (
             <SkillWrapper key={i}>
               <Skill>{item}</Skill>
-              <SmallDeletebutton
-                onClick={() => {
-                  this.removeSkill(i);
-                }}
-              >
-                <BsFillTrashFill />
-              </SmallDeletebutton>
+              {this.context === "edit" && (
+                <SmallDeletebutton
+                  onClick={() => {
+                    this.removeSkill(i);
+                  }}
+                >
+                  <BsFillTrashFill />
+                </SmallDeletebutton>
+              )}
             </SkillWrapper>
           ))}
         </CVSectionItems>
